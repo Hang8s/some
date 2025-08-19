@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block title %} {{title}} {% endblock %}
+{% block main %} 
+    <h1 class="title">{{title}}</h1>
+
+    {% if list %}
+        <ul class="all_todos">
+        {% for el in list %}
+            <li>
+                <div>
+                    <h2>{{el.name}}</h2>
+                    {{el.about}}
+                </div>
+                
+                {% if el.is_completed == True %}
+                    <h2 class="completed">Completed</h2>
+                {% else %}
+                    <h2 class="not_completed">Not completed</h2>
+                {% endif %}
+                <a href="{% url 'edit' el.id %}">Change</a>
+                <hr>
+            </li>
+            <hr>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
